@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/open_quiz"
+    app:startDestination="@id/rulesFragment">
+
+    <fragment
+        android:id="@+id/rulesFragment"
+        android:name="com.example.erudite.UI.RulesFragment"
+        android:label="fragment_rules"
+        tools:layout="@layout/fragment_rules" >
+        <action
+            android:id="@+id/action_rulesFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+        <action
+            android:id="@+id/action_rulesFragment_to_changeUserFragment"
+            app:destination="@id/changeUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.example.erudite.UI.QuestionFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question" >
+        <action
+            android:id="@+id/action_questionFragment_to_answerFragment"
+            app:destination="@id/answerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/answerFragment"
+        android:name="com.example.erudite.UI.AnswerFragment"
+        android:label="fragment_answer"
+        tools:layout="@layout/fragment_answer" >
+        <action
+            android:id="@+id/action_answerFragment_to_rightAnswerFragment"
+            app:destination="@id/rightAnswerFragment" />
+        <action
+            android:id="@+id/action_answerFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rightAnswerFragment"
+        android:name="com.example.erudite.UI.RightAnswerFragment"
+        android:label="fragment_right_answer"
+        tools:layout="@layout/fragment_right_answer" >
+        <action
+            android:id="@+id/action_rightAnswerFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+        <action
+            android:id="@+id/action_rightAnswerFragment_to_rulesFragment"
+            app:destination="@id/rulesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeUserFragment"
+        android:name="com.example.erudite.UI.ChangeUserFragment"
+        android:label="fragment_change_user"
+        tools:layout="@layout/fragment_change_user" >
+        <action
+            android:id="@+id/action_changeUserFragment_to_rulesFragment"
+            app:destination="@id/rulesFragment" />
+    </fragment>
+</navigation>

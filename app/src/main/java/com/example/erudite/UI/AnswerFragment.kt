@@ -1,21 +1,22 @@
 package com.example.erudite.UI
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.erudite.R
-import com.example.erudite.ViewModels.TimerAnswerFragmentViewModel
+import com.example.erudite.ViewModels.TimerViewModel
+import com.example.erudite.ViewModels.TimerViewModelFactory
 import com.example.erudite.databinding.FragmentAnswerBinding
 
 
 class AnswerFragment : Fragment() {
 
     lateinit var binding: FragmentAnswerBinding
-    private val answerViewModel : TimerAnswerFragmentViewModel by viewModels()
+    private val timerViewModel : TimerViewModel by viewModels{TimerViewModelFactory(requireActivity().application, timerCount = 20000L, delay = 0L)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +56,7 @@ class AnswerFragment : Fragment() {
             navController.navigate(R.id.action_answerFragment_to_questionFragment)
         }
 
-        answerViewModel.timerAnswer.observe(this.viewLifecycleOwner, {
+        timerViewModel.timerLiveData.observe(this.viewLifecycleOwner, {
             tvTimer.text = it
             if (it.toInt() == 0) {
                 navController.navigate(R.id.action_answerFragment_to_rightAnswerFragment, bundle)

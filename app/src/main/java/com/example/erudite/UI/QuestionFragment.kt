@@ -1,27 +1,27 @@
 package com.example.erudite.UI
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.example.erudite.Models.Questions
 import com.example.erudite.R
 import com.example.erudite.ViewModels.QuestionQuestionFragmentViewModel
-import com.example.erudite.ViewModels.TimerQuestionFragmentViewModel
+import com.example.erudite.ViewModels.TimerViewModel
+import com.example.erudite.ViewModels.TimerViewModelFactory
 import com.example.erudite.databinding.FragmentQuestionBinding
-import java.util.*
-import kotlin.concurrent.schedule
+import kotlin.properties.Delegates
 
 
 class QuestionFragment : Fragment() {
 
     lateinit var binding: FragmentQuestionBinding
-    private val timerQuestionViewModel: TimerQuestionFragmentViewModel by viewModels()
+    var delay = 1000L
     private val questionQuestionViewModel: QuestionQuestionFragmentViewModel by viewModels()
-
+    var questionSize = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,21 +49,33 @@ class QuestionFragment : Fragment() {
 
 
 
-
         questionQuestionViewModel.questions.observe(this.viewLifecycleOwner, {
             val (idQuestion, question, answer) = it
             tvNumberQuestion.text = "Question $idQuestion"
             tvTextQuestion.text = question
+            questionSize = question.length
+
             bundle.putString("rightAnswer", answer)
         })
 
-        timerQuestionViewModel.timerLiveData.observe(this.viewLifecycleOwner, {
-                tvTimer.text = it
-                if (it.toInt() == 0){
-                    navController.navigate(R.id.action_questionFragment_to_answerFragment, bundle)
-                }
+        val timerCount = 60000L
+        delay = (questionSize*80).toLong()
+        Log.d("MyLog", "questionSize = $questionSize")
+        Log.d("MyLog", "delay2 in fragment = $delay")
 
+        val timerViewModel: TimerViewModel by viewModels {
+            TimerViewModelFactory(
+                requireActivity().application,
+                timerCount,
+                getDelayValue()
+            )
+        }
 
+        timerViewModel.timerLiveData.observe(this.viewLifecycleOwner, {
+            tvTimer.text = it
+            if (it.toInt() == 0) {
+                navController.navigate(R.id.action_questionFragment_to_answerFragment, bundle)
+            }
         })
 
         btEarlyAnswer.setOnClickListener {
@@ -71,4 +83,13 @@ class QuestionFragment : Fragment() {
         }
 
     }
+
+
+    fun getDelayValue(): Long{
+        val delay = (questionSize*80).toLong()
+        return delay
+    }
+
+
+
 }

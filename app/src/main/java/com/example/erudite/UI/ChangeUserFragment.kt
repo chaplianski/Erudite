@@ -33,14 +33,14 @@ class ChangeUserFragment : Fragment() {
         val userRepository = context?.let { UserRepository(it) }
 
         val tvNickname = view.findViewById<EditText>(R.id.etTextPersonName).text.toString()
-        val  backButton = view.findViewById<Button>(R.id.bt_back_change_user_fragment)
+        val  okButton = view.findViewById<Button>(R.id.bt_back_change_user_fragment)
         val  navController = Navigation.findNavController(view)
     //    val userAdapter = UserRVAdapter()
 
 
 
 
-        backButton.setOnClickListener {
+        okButton.setOnClickListener {
             if (userRepository != null) {
         //        if (userRepository.checkUser(tvNickname)){
         //            val user = User(1, tvNickname)

@@ -12,7 +12,9 @@ import com.example.erudite.databinding.FragmentRightAnswerBinding
 
 class RightAnswerFragment : Fragment() {
 
-    lateinit var binding: FragmentRightAnswerBinding
+
+    var _binding: FragmentRightAnswerBinding? = null
+    val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,7 +24,7 @@ class RightAnswerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentRightAnswerBinding.inflate(inflater, container, false)
+        _binding = FragmentRightAnswerBinding.inflate(inflater, container, false)
             return binding.root
     }
 
@@ -51,6 +53,11 @@ class RightAnswerFragment : Fragment() {
         btPauseQuiz.setOnClickListener {
             navController.navigate(R.id.action_rightAnswerFragment_to_rulesFragment)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 

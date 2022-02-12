@@ -12,7 +12,9 @@ import com.example.erudite.databinding.FragmentRulesBinding
 
 class RulesFragment : Fragment() {
 
-    lateinit var binding: FragmentRulesBinding
+
+    var _binding: FragmentRulesBinding? = null
+    val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -22,7 +24,7 @@ class RulesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentRulesBinding.inflate(inflater, container, false)
+        _binding = FragmentRulesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,6 +47,11 @@ class RulesFragment : Fragment() {
             navController?.navigate(R.id.changeUserFragment)
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 

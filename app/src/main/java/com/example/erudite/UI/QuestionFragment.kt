@@ -18,10 +18,14 @@ import kotlin.properties.Delegates
 
 class QuestionFragment : Fragment() {
 
-    lateinit var binding: FragmentQuestionBinding
+ //   lateinit var binding: FragmentQuestionBinding
+
+    var _binding: FragmentQuestionBinding? = null
+    val  binding get() = _binding!!
+
     var delay = 1000L
     private val questionQuestionViewModel: QuestionQuestionFragmentViewModel by viewModels()
-    var questionSize = 0
+ //   var questionSize = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +36,8 @@ class QuestionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentQuestionBinding.inflate(inflater, container, false)
+        _binding = FragmentQuestionBinding.inflate(inflater, container, false)
+     //   val view = binding.root
         return binding.root
     }
 
@@ -53,7 +58,7 @@ class QuestionFragment : Fragment() {
             val (idQuestion, question, answer) = it
             tvNumberQuestion.text = "Question $idQuestion"
             tvTextQuestion.text = question
-            questionSize = question.length
+            val questionSize = question.length
 
             bundle.putString("rightAnswer", answer)
         })
@@ -84,11 +89,21 @@ class QuestionFragment : Fragment() {
 
     }
 
-
-    fun getDelayValue(): Long{
-        val delay = (questionSize*80).toLong()
-        return delay
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
+
+    companion object{
+
+        val questionSize = 0
+        fun getDelayValue(): Long{
+            val delay = (questionSize*80).toLong()
+            return delay
+        }
+    }
+
+
 
 
 

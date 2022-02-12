@@ -15,7 +15,10 @@ import com.example.erudite.databinding.FragmentAnswerBinding
 
 class AnswerFragment : Fragment() {
 
-    lateinit var binding: FragmentAnswerBinding
+
+    var _binding: FragmentAnswerBinding? = null
+    val binding get() = _binding!!
+
     private val timerViewModel : TimerViewModel by viewModels{TimerViewModelFactory(requireActivity().application, timerCount = 20000L, delay = 0L)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +30,7 @@ class AnswerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAnswerBinding.inflate(inflater, container, false)
+        _binding = FragmentAnswerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -64,6 +67,11 @@ class AnswerFragment : Fragment() {
         })
 
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 

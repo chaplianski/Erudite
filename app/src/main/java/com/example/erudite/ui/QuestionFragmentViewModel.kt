@@ -1,21 +1,25 @@
-package com.example.erudite.ViewModels
+package com.example.erudite.ui
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.erudite.Models.Questions
-import com.example.erudite.Repository.QuestionRepository
+import com.example.erudite.model.Questions
+import com.example.erudite.repository.QuestionRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
-class QuestionQuestionFragmentViewModel(application: Application): AndroidViewModel(application) {
+class QuestionFragmentViewModel (application: Application): AndroidViewModel(application) {
+ //   : ViewModel() {
+ //   @Inject
 
     val questions = MutableLiveData<Questions>()
     val questionRepository = QuestionRepository(application)
+
+
+
+ //   val questionRepository = QuestionRepository(application)
  //   val questionList = emptyList<>()
 
     init {

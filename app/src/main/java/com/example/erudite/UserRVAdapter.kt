@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.erudite.Models.User
+import com.example.erudite.model.User
 
 class UserRVAdapter(usera: List<User>): RecyclerView.Adapter<UserRVHolder>() {
 

@@ -1,30 +1,32 @@
-package com.example.erudite.UI
+package com.example.erudite.ui
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.erudite.R
-import com.example.erudite.ViewModels.QuestionQuestionFragmentViewModel
 import com.example.erudite.ViewModels.TimerViewModel
 import com.example.erudite.ViewModels.TimerViewModelFactory
 import com.example.erudite.databinding.FragmentQuestionBinding
-import kotlin.properties.Delegates
 
 
 class QuestionFragment : Fragment() {
 
  //   lateinit var binding: FragmentQuestionBinding
+ //  @Inject
+//    lateinit var timerViewModelFactory : TimerViewModelFactory<QuestionFragmentViewModel>
+ //   lateinit var questionFragmentViewModel: QuestionFragmentViewModel
+
 
     var _binding: FragmentQuestionBinding? = null
     val  binding get() = _binding!!
 
     var delay = 1000L
-    private val questionQuestionViewModel: QuestionQuestionFragmentViewModel by viewModels()
+    private val questionViewModel: QuestionFragmentViewModel by viewModels()
  //   var questionSize = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +56,7 @@ class QuestionFragment : Fragment() {
 
 
 
-        questionQuestionViewModel.questions.observe(this.viewLifecycleOwner, {
+        questionViewModel.questions.observe(this.viewLifecycleOwner, {
             val (idQuestion, question, answer) = it
             tvNumberQuestion.text = "Question $idQuestion"
             tvTextQuestion.text = question

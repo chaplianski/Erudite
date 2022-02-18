@@ -1,4 +1,4 @@
-package com.example.erudite.Models
+package com.example.erudite.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

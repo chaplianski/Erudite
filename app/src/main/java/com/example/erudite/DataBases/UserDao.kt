@@ -1,7 +1,7 @@
 package com.example.erudite.DataBases
 
 import androidx.room.*
-import com.example.erudite.Models.User
+import com.example.erudite.model.User
 
 @Dao
 interface UserDao {

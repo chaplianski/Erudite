@@ -1,15 +1,16 @@
-package com.example.erudite.Repository
+package com.example.erudite.repository
+
 
 import android.content.Context
 import com.example.erudite.DataBases.UserDB
-import com.example.erudite.Models.User
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.erudite.model.User
+
 
 class UserRepository (context: Context){
 
-    val userDataBase = UserDB.getDatabase(context)
+
+
+    val userDataBase = UserDB.getDatabase(context)//UserDB.getDatabase(context)
 
     fun insertUser (user: User) {
        userDataBase.userDao().insertUser(user)

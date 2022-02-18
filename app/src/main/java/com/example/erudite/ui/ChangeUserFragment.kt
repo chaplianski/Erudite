@@ -1,4 +1,4 @@
-package com.example.erudite.UI
+package com.example.erudite.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,13 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.navigation.Navigation
-import com.example.erudite.Models.User
 import com.example.erudite.R
-import com.example.erudite.Repository.UserRepository
-import com.example.erudite.UserRVAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.erudite.repository.*
 
 
 class ChangeUserFragment : Fragment() {

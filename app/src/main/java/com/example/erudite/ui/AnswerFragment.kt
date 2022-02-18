@@ -1,4 +1,4 @@
-package com.example.erudite.UI
+package com.example.erudite.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

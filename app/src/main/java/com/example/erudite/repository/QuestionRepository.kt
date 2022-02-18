@@ -1,10 +1,10 @@
-package com.example.erudite.Repository
+package com.example.erudite.repository
 
 import android.content.Context
 import com.example.erudite.DataBases.QuestionsDB
-import com.example.erudite.Models.Questions
+import com.example.erudite.model.Questions
 
-class QuestionRepository (val context: Context) {
+class QuestionRepository (context: Context){
 
     val questionDatabase = QuestionsDB.getDatabase(context)
     val questionList  = listOf<Questions>( Questions

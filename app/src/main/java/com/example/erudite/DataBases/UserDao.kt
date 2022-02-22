@@ -17,4 +17,7 @@ interface UserDao {
 
     @Query ("SELECT * FROM users WHERE nickname= :nick")
     fun checkBeingUser (nick: String): Boolean
+
+    @Query ("SELECT * FROM users")
+    fun loadUsers(): List<User>
 }

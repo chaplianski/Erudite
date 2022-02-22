@@ -1,18 +1,23 @@
 package com.example.erudite.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.erudite.R
-import com.example.erudite.repository.*
+import com.example.erudite.UserRVAdapter
 
 
 class ChangeUserFragment : Fragment() {
+
+    val userViewModel: ChangeUserFragmentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,26 +30,39 @@ class ChangeUserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userRepository = context?.let { UserRepository(it) }
 
         val tvNickname = view.findViewById<EditText>(R.id.etTextPersonName).text.toString()
-        val  okButton = view.findViewById<Button>(R.id.bt_back_change_user_fragment)
-        val  navController = Navigation.findNavController(view)
-    //    val userAdapter = UserRVAdapter()
+        val okButton = view.findViewById<Button>(R.id.bt_back_change_user_fragment)
+        val navController = Navigation.findNavController(view)
+
+
+        //  userList = fetchUsers()
+
+        userViewModel.userLiveData.observe(this.viewLifecycleOwner, {
+            val userAdapter = UserRVAdapter(it)
+            view.findViewById<RecyclerView>(R.id.rv_user_list).apply {
+                layoutManager = LinearLayoutManager(activity)
+                adapter = userAdapter
+            }
+        })
+
+
+
 
 
 
 
         okButton.setOnClickListener {
-            if (userRepository != null) {
-        //        if (userRepository.checkUser(tvNickname)){
-        //            val user = User(1, tvNickname)
-        //            userRepository?.insertUser(user)
-        //        }
-            }
+            /*    CoroutineScope(Dispatchers.IO).launch {
+                if (userRepository != null) {
 
-
-
+                    if (userRepository.checkUser(tvNickname)){
+                        val user = User( nickname = tvNickname)
+                        userRepository?.insertUser(user)
+                        Log.d("MyLog", "User List = $userList")
+                    }
+                }
+            }*/
             navController.navigate(R.id.action_changeUserFragment_to_rulesFragment)
         }
     }

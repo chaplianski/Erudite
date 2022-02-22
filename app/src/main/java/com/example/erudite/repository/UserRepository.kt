@@ -19,4 +19,8 @@ class UserRepository (context: Context){
     fun checkUser (nickname: String): Boolean{
        return userDataBase.userDao().checkBeingUser(nickname)
     }
+
+    fun  loadUsers (): List<User>{
+        return userDataBase.userDao().loadUsers()
+    }
 }

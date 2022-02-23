@@ -15,7 +15,6 @@ import com.example.erudite.databinding.FragmentAnswerBinding
 
 class AnswerFragment : Fragment() {
 
-
     var _binding: FragmentAnswerBinding? = null
     val binding get() = _binding!!
 

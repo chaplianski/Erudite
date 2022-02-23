@@ -9,8 +9,8 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertUser (user: User)
 
-    @Query ("DELETE FROM users")
-    fun deleteALL ()
+    @Query ("DELETE FROM users WHERE userId= :id")
+    fun deleteUser (id: Int)
 
  //   @Query ("SELECT COUNT(questionId) FROM userAnswer WHERE isRightAnswer= :result")
 //    fun  qualityRightAnswer (result: Boolean): Int

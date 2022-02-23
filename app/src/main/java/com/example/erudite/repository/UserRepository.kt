@@ -23,4 +23,8 @@ class UserRepository (context: Context){
     fun  loadUsers (): List<User>{
         return userDataBase.userDao().loadUsers()
     }
+
+    fun deleteUser(id: Int) {
+        userDataBase.userDao().deleteUser(id)
+    }
 }

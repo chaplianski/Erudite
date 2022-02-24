@@ -1,6 +1,8 @@
 package com.example.erudite.ui
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,9 +29,6 @@ class ChangeUserFragment : Fragment() {
 
     private val userViewModel: ChangeUserFragmentViewModel by viewModels()
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,9 +54,31 @@ class ChangeUserFragment : Fragment() {
 
                 userAdapter.userLongOnClickListener = object : UserRVAdapter.UserLongOnClickListener{
                     override fun userLongClick(userItem: User) {
-                        userViewModel.deleteUser(userItem.userId)
-                        userAdapter.submitList(it)
+
+                        val builder = AlertDialog.Builder(context)
+                        with(builder){
+                            setTitle("Delete user")
+                            setCancelable(true)
+                            setMessage("Do your sure?")
+                            setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id ->
+                                userViewModel.deleteUser(userItem.userId)
+                          //      userAdapter.submitList(it)
+                            })
+                            setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, i ->
+                                dialog.cancel()
+                            })
+
+                        }
+                        val alertDialog = builder.create()
+                        alertDialog.show()
                     }
+                }
+
+                userAdapter.userShortOnClickListener = object : UserRVAdapter.UserShortOnClickListener{
+                    override fun userShortClick(userItem: User) {
+                        addUserSharedPref(userItem.nickname)
+                    }
+
                 }
             }
         })
@@ -76,9 +97,6 @@ class ChangeUserFragment : Fragment() {
                    }
 
                    addUserSharedPref(tvNickname)
-
-
-
             }
             navController.navigate(R.id.action_changeUserFragment_to_rulesFragment)
         }
@@ -92,6 +110,7 @@ class ChangeUserFragment : Fragment() {
             Log.d("MyLog", "current user: $nickname")
         }
     }
+
 
     companion object {
 

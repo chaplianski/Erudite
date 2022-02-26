@@ -1,26 +1,27 @@
 package com.example.erudite.ui
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.erudite.model.Questions
 import com.example.erudite.repository.QuestionRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class QuestionFragmentViewModel (application: Application): AndroidViewModel(application) {
- //   : ViewModel() {
- //   @Inject
 
+//class QuestionFragmentViewModel (application: Application): AndroidViewModel(application){
+
+class QuestionFragmentViewModel @Inject constructor(context: Context): ViewModel(){
+
+
+    val questionRepository = QuestionRepository(context)
     val questions = MutableLiveData<Questions>()
-    val questionRepository = QuestionRepository(application)
-
-
-
- //   val questionRepository = QuestionRepository(application)
- //   val questionList = emptyList<>()
 
     init {
        CoroutineScope(Dispatchers.IO).launch {

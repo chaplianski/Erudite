@@ -3,8 +3,13 @@ package com.example.erudite.repository
 import android.content.Context
 import com.example.erudite.DataBases.QuestionsDB
 import com.example.erudite.model.Questions
+import javax.inject.Inject
 
-class QuestionRepository (context: Context){
+class QuestionRepository @Inject constructor (
+    context: Context
+        ){
+
+
 
     val questionDatabase = QuestionsDB.getDatabase(context)
     val questionList  = listOf<Questions>( Questions

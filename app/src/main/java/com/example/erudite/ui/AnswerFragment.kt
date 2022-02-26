@@ -18,7 +18,8 @@ class AnswerFragment : Fragment() {
     var _binding: FragmentAnswerBinding? = null
     val binding get() = _binding!!
 
-    private val timerViewModel : TimerViewModel by viewModels{TimerViewModelFactory(requireActivity().application, timerCount = 20000L, delay = 0L)}
+    private val timerViewModel : TimerViewModel by viewModels{TimerViewModelFactory(requireActivity()
+        .application, timerCount = 20000L, delay = 0L)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

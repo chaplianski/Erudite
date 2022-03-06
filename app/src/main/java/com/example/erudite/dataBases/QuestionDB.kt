@@ -1,15 +1,14 @@
-package com.example.erudite.DataBases
+package com.example.erudite.dataBases
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.erudite.model.Questions
-import javax.inject.Inject
 
 @Database(entities = [Questions::class],version = 1,exportSchema = false)
-abstract class QuestionsDB: RoomDatabase () {
-    abstract fun QuestionDao():QuestionDao
+abstract class QuestionsDB: RoomDatabase() {
+    abstract fun QuestionDao(): QuestionDao
 
     companion object{
         @Volatile

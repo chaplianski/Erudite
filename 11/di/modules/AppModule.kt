@@ -1,8 +1,8 @@
-package com.example.erudite.DI.modules
+package com.example.erudite.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.example.erudite.DataBases.QuestionsDB
+import com.example.erudite.data.databases.QuestionsDB
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

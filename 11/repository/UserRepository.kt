@@ -1,12 +1,14 @@
 package com.example.erudite.repository
 
+
 import android.content.Context
-import com.example.erudite.dataBases.UserDB
+import com.example.erudite.data.databases.UserDB
 import com.example.erudite.model.User
 import javax.inject.Inject
 
 
 class UserRepository @Inject constructor(context: Context){
+
 
 
     val userDataBase = UserDB.getDatabase(context)//UserDB.getDatabase(context)

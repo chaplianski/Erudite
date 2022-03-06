@@ -1,7 +1,7 @@
 package com.example.erudite.repository
 
 import android.content.Context
-import com.example.erudite.dataBases.QuestionsDB
+import com.example.erudite.data.databases.QuestionsDB
 import com.example.erudite.model.Questions
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.example.erudite.DataBases
+package com.example.erudite.data.databases
 
 import androidx.room.Dao
 import androidx.room.Insert

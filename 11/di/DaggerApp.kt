@@ -1,8 +1,8 @@
-package com.example.erudite.DI
+package com.example.erudite.di
 
 import android.app.Application
-import com.example.erudite.DI.components.AppComponent
-import com.example.erudite.DI.components.DaggerAppComponent
+import com.example.erudite.di.components.AppComponent
+import com.example.erudite.di.components.DaggerAppComponent
 
 class DaggerApp: Application() {
 

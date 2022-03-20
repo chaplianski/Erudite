@@ -3,9 +3,9 @@ package com.example.erudite.di.components
 import android.content.Context
 import com.example.erudite.di.modules.AppModule
 import com.example.erudite.di.modules.UserModule
-import com.example.erudite.ui.QuestionFragment
-import com.example.erudite.ui.RightAnswerFragment
-import com.example.erudite.ui.RulesFragment
+import com.example.erudite.presentation.ui.QuestionFragment
+import com.example.erudite.presentation.ui.RightAnswerFragment
+import com.example.erudite.presentation.ui.RulesFragment
 import dagger.BindsInstance
 import dagger.Component
 

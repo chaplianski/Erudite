@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/rulesFragment"
-        android:name="com.example.erudite.ui.RulesFragment"
+        android:name="com.example.erudite.presentation.ui.RulesFragment"
         android:label="fragment_rules"
         tools:layout="@layout/fragment_rules" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/questionFragment"
-        android:name="com.example.erudite.ui.QuestionFragment"
+        android:name="com.example.erudite.presentation.ui.QuestionFragment"
         android:label="fragment_question"
         tools:layout="@layout/fragment_question" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/answerFragment"
-        android:name="com.example.erudite.ui.AnswerFragment"
+        android:name="com.example.erudite.presentation.ui.AnswerFragment"
         android:label="fragment_answer"
         tools:layout="@layout/fragment_answer" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/rightAnswerFragment"
-        android:name="com.example.erudite.ui.RightAnswerFragment"
+        android:name="com.example.erudite.presentation.ui.RightAnswerFragment"
         android:label="fragment_right_answer"
         tools:layout="@layout/fragment_right_answer" >
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/changeUserFragment"
-        android:name="com.example.erudite.ui.ChangeUserFragment"
+        android:name="com.example.erudite.presentation.ui.ChangeUserFragment"
         android:label="fragment_change_user"
         tools:layout="@layout/fragment_change_user" >
         <action

@@ -3,7 +3,7 @@ package com.example.erudite.di.modules
 
 import android.content.Context
 import androidx.room.Room
-import com.example.erudite.dataBases.UserDB
+import com.example.erudite.data.database.UserDB
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

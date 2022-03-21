@@ -21,11 +21,9 @@ import javax.inject.Inject
 
 class QuestionFragmentViewModel @Inject constructor(repository: QuestionRepository): ViewModel(){
 
-   // val questionRepository = QuestionRepository(context)
     val questionRepository = repository
     private val _questions = MutableLiveData<Questions>()
     val questions: LiveData<Questions> get()= _questions
- //   val questionTimer = QuestionTimer()
 
     init {
        CoroutineScope(Dispatchers.IO).launch {

@@ -62,6 +62,7 @@ class RightAnswerFragment : Fragment() {
         val navController = Navigation.findNavController(view)
         val userSharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         val currentUser = userSharedPref?.getString(ChangeUserFragment.CURRENT_USER, "User")
+   //     val additionTime = userSharedPref?.getLong(ChangeUserFragment.CURRENT_ADDION_TIME, 0L)
         Log.d("MyLog", "RA user: $currentUser")
         if (currentUser != null) {
             userViewModel.getUser(currentUser)
@@ -71,13 +72,17 @@ class RightAnswerFragment : Fragment() {
         tvUserAnswer.text = userAnswer
         val rightAnswer = arguments?.getString("rightAnswer")
         tvRightAnswer.text = rightAnswer
+        val earlyAnswer = arguments?.getBoolean("earlyAnswer")
 
 
         userViewModel.currentUser.observe(this, {
             if (userAnswer.equals(rightAnswer)) {
                 tvComment.text = "Cool!!!"
                 it.score = it.score + 100
-                it.addionTime = it.addionTime + 60000
+                    if (earlyAnswer == true) {
+                        it.addionTime = it.addionTime + 60000
+                    }
+
                 userSharedPref?.edit()?.putInt(ChangeUserFragment.CURRENT_SCORE, it.score)?.apply()
                 userViewModel.updateUser(it)
             } else{

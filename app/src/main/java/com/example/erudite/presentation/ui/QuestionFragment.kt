@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import com.example.erudite.R
 import com.example.erudite.data.QuestionTimer
@@ -16,7 +18,7 @@ import com.example.erudite.databinding.FragmentQuestionBinding
 import com.example.erudite.di.components.DaggerAppComponent
 import com.example.erudite.presentation.viewmodel.QuestionFragmentViewModel
 import com.example.erudite.presentation.viewmodelfactory.QuestionFragmentVMFactory
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -72,11 +74,14 @@ class QuestionFragment : Fragment() {
             Log.d("MyLog", "questionLength = $questionSize")
             val questionTimer = QuestionTimer (60, questionSize)
 
-            lifecycleScope.launchWhenCreated {
-                questionTimer.timerValue.collect {
-                    tvTimer.text = it.toString()
-                    if (it == 0) navController.navigate(R.id.action_questionFragment_to_answerFragment, bundle)
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                    questionTimer.timerValue.collect {
+                        tvTimer.text = it.toString()
+                        if (it == 0) navController.navigate(R.id.answerFragment, bundle)
+                    }
                 }
+
             }
 
             bundle.putString("rightAnswer", answer)

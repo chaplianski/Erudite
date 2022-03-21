@@ -17,11 +17,13 @@ class QuestionRepository @Inject constructor (context: Context){
         Questions(3,"«Первый человек спустился на землю с неба», – гласит легенда африканского народа суахили. А кто ему в этом помог?", "Жираф"),
         Questions(4, "Дважды человеку дается это бесплатно. Если у него возникает желание получить это в третий раз, он должен заплатить. О чем идёт речь?", "Зубы"),
         Questions(5,"Кого изобразили на плакатах против расизма, потому что они и белые, и чёрные, и азиаты?", "Панда" ),
-        Questions(6, "Она расскажет вам о любви ценой собственной жизни.", "Ромашка")
+        Questions(6, "Она расскажет вам о любви ценой собственной жизни.", "Ромашка"),
+        Questions(7, "dfgsdgfsdgf", "1")
     )
 
 
         fun addQuestion(){
+            deleteAllQuestions()
             for ( i in questionList.indices){
                 questionDatabase.QuestionDao().insertQuestion(questionList[i])
             }
